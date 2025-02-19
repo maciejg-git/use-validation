@@ -1,4 +1,4 @@
-let validationMessages = {
+export let validationMessages = {
   required: "This field is required",
   alpha: "Please enter only letters",
   numeric: "Please enter only numbers",
@@ -16,10 +16,6 @@ let validationMessages = {
   atLeastOneSpecial: "Please enter at least one special character",
   sameAs: ""
 };
-
-export let setValidationMessage = (validator, message) => {
-  validationMessages[validator] = message
-}
 
 export let globalValidators = {
   required: (value, isRequired) => {
