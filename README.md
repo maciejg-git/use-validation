@@ -2,12 +2,16 @@
 
 Light validation function.
 
-# Usage:
+## Usage:
 
-`useValidation` function takes as argument object describing your input. It contains `rules` array, the validation object that stores validation results and number of optional properties to customize validation for specific input. Function returns object that contains functions (`touch`, `formValidate`, `reset`) to perform validation related actions on input.
+`useValidation` function takes two arguments:
+- object that should contain `rules` array and number of optional properties to customize validation for specific input,
+- callback that is called after each validation. The results of the validation are in the callback argument.
+
+`useValidation` function returns object that contains functions (`touch`, `formValidate`, `reset`) to perform validation related actions on input.
 
 ```typescript
-let validation = useValidation(options)
+let validation = useValidation(options, callback)
 ```
 
 ### Arguments:
@@ -16,34 +20,37 @@ let validation = useValidation(options)
 {
     name: String,
     rules: Array,
-    validation: Object,
-    validateOn: String,
-    validateMode: String,
-}
+    mode: String,
+},
+callback: Function
 ```
 
 #### Required properties:
 
 - **rules** - an array of validation rules where each item is a name of global validator (`string` or `object`) or object with single function and tested value as argument. Functions should return true for valid values or the string message if the result is invalid. For list of available validators check [validators.js](https://github.com/maciejg-git/vue-use-validation/blob/main/validators.js)
-- **validation** - object used to store validation results. It has following properties
-    - **status** - object containg the results of validation and the current state of input (for example `touched`, `dirty` etc). It is updated once initially and then after each value change.
-    - **state** - final validation state of input. This state is based on current `status` and is updated only when conditions in `validateOn` and `validateMode` options are fulfilled. By default it is empty string for initial state of input, "valid" for valid input and "invalid" for invalid input.
-    - **messages** - object containing validation messages.
+- **callback** - function that is called after each validation. The results of the valiation are in the callback argument. See below for the description of the validation results object.
 
 #### Optional properties:
 
-- **name** - name of input. Name is required when adding multiple inputs.
-- **validateOn** - defines conditions to start validation. Possible conditions are:
-    - "blur" - validate after input loses focus (default)
-    - "immediate" - starts validating immediately after first input
-    - "form" - validate after calling formValidate function
-- **validateMode** - defines how to update state according to validation results. Possible modes are:
-    - "silent" - valid values does not change inputs validaton state to valid unless it was invalid before (only for validate on blur)(default)
-    - "eager" - invalid and valid values always change inputs validation state
+- **name** - name of input.
+- **mode** - is a mode that defines when to validate input and how to update state depending on the validation results:
+    - "blur-silent" - validate after input loses focus. If the input is valid then do not set state to valid.
+    - "blur-eager" - validate after input loses focus. Always set state for valid and invalid inputs.
+    - "form-silent" - validated manually after calling formValidate function. If the input is valid then do not set state to valid.
+    - "form-eager" - validated manually after calling formValidate function. Always set state for valid and invalid inputs.
+    - "immediate-eager" - validate on each input update. Always set state for valid and invalid inputs.
+
+### Validation results
+
+The validation result is an object with following propreties:
+
+- **status** - object containg the results of validation and the current state of input (for example `touched`, `dirty` etc). It is updated once initially and then after each value change.
+- **state** - final validation state of input. This state is based on the current `status` and is updated only when conditions for the `mode` are fulfilled (for example input lost focus etc). By default it is empty string for initial state of input, `"valid"` for valid input and `"invalid"` for invalid input.
+- **messages** - object containing validation messages.
 
 ### Returns:
 
-useValidation function returns single object:
+`useValidation` function returns single object:
 
 ```javascript
 {
