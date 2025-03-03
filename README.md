@@ -25,13 +25,7 @@ let validation = useValidation(options, callback)
 callback: Function
 ```
 
-#### Required properties:
-
 - **rules** - an array of validation rules where each item is a name of validator (`string` or `object`) or an object with function and tested value as argument. Functions should return true for valid values or a string message if the result is invalid. For list of available validators check [validators.js](https://github.com/maciejg-git/vue-use-validation/blob/main/validators.js)
-- **callback** - function that is called after each validation. The results of the valiation are in the callback argument. See below for the description of the validation results object.
-
-#### Optional properties:
-
 - **name** - name of the input.
 - **mode** - is a mode that defines when to validate input and how to update state depending on the validation results:
     - `"blur-silent"` - validate after input loses focus. If the input is valid then do not set state to valid.
@@ -39,6 +33,7 @@ callback: Function
     - `"form-silent"` - validated manually after calling formValidate function. If the input is valid then do not set state to valid.
     - `"form-eager"` - validated manually after calling formValidate function. Always set state for valid and invalid inputs.
     - `"immediate-eager"` - validate on each input update. Always set state for valid and invalid inputs.
+- **callback** - function that is called after each validation. The results of the valiation are in the callback argument. See below for the description of the validation results object.
 
 ### Validation results
 
