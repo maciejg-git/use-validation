@@ -21,6 +21,7 @@ let validation = useValidation(options, callback)
     name: String,
     rules: Array,
     mode: String,
+    messages: Object,
 },
 callback: Function
 ```
@@ -33,6 +34,7 @@ callback: Function
     - `"form-silent"` - validated manually after calling formValidate function. If the input is valid then do not set state to valid.
     - `"form-eager"` - validated manually after calling formValidate function. Always set state for valid and invalid inputs.
     - `"immediate-eager"` - validate on each input update. Always set state for valid and invalid inputs.
+- **messages** - Each rule has default generic validation message for the invalid value. You can customize these messages for the input by adding them to the messages property. The key is a rule name and the value is the new message.
 - **callback** - function that is called after each validation. The results of the valiation are in the callback argument. See below for the description of the validation results object.
 
 ### Validation results
