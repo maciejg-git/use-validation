@@ -1,6 +1,10 @@
-# vue-use-validation
+# use-validation
 
 Light validation function.
+- vanilla js, framework independent
+- 5 modes of validation
+- includes common validators with validation messages
+- customizable validators and validation messages
 
 ## Usage:
 
