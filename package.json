@@ -1,8 +1,9 @@
 {
-  "name": "vue-use-validation",
+  "name": "use-validation",
   "version": "1.0.0",
-  "description": "Light validation composable for Vue 3.",
-  "main": "use-form-validation.js",
+  "description": "Light validation function",
+  "main": "./use-validation.js",
+  "exports": "./use-validation.js",
   "scripts": {
     "test": "vitest"
   },
@@ -15,9 +16,5 @@
   "bugs": {
     "url": "https://github.com/maciejg-git/vue-use-validation/issues"
   },
-  "homepage": "https://github.com/maciejg-git/vue-use-validation#readme",
-  "devDependencies": {
-    "vitest": "^0.30.1",
-    "vue": "^3.2.47"
-  }
+  "homepage": "https://github.com/maciejg-git/vue-use-validation#readme"
 }
