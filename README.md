@@ -1,5 +1,8 @@
 # use-validation
 
+![GitHub License](https://img.shields.io/github/license/maciejg-git/use-validation)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/maciejg-git/use-validation)
+
 Light validation function.
 - vanilla js, framework independent
 - 5 modes of validation
