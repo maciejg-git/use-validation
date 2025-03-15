@@ -139,3 +139,13 @@ input {
 }
 </style>
 ```
+
+For more examples of components using this function check [Litewind-vue](https://vue-litewind.netlify.app/documentation/form-validation) or [Litewind-alpine](https://litewind-alpine.netlify.app/documentation/validation/) validation documentation.
+
+## Default messages
+
+To change or add default messages for the validators import `validationMessages` object from validators.js file. A message can contain `%d` characters that are replaced with a rule value.
+
+## Default validators
+
+To add new validators import `globalValidators` object from validators.js file.
